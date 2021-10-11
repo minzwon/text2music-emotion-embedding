@@ -167,6 +167,7 @@ class MyDataset(data.Dataset):
 
         # song
         ix, fn = self.song_ids[index % len(self.song_ids)].split('---')
+        fn = os.path.join(self.data_path, fn)
         song = self.load_audio(fn)
         song_binary = self.song_binaries[int(ix)]
         return song_tag_emb.astype('float32'), song_tag_binary.astype('float32'), text_tag_emb.astype('float32'), text_tag_binary.astype('float32'), song.astype('float32'), song_binary.astype('float32'), token, mask, text_binary.astype('float32')

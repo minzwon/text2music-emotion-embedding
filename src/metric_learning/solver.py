@@ -113,7 +113,7 @@ class Solver(LightningModule):
 
     def load_pretrained(self, load_path):
         S = torch.load(load_path)['state_dict']
-        NS = {key[6:]: S[key] for key in S.keys() if ((key[:5] == 'model') and (key[:13]!='model.song_fc'))}
+        NS = {key[6:]: S[key] for key in S.keys() if ((key[:5] == 'model'))}
         S = self.model.state_dict()
         for key in NS.keys():
             if key in S.keys():
@@ -271,6 +271,17 @@ class Solver(LightningModule):
             overall = torch.tensor(0)
         else:
             overall = self.get_scores(song_tag_embs, text_tag_embs, song_embs, text_embs, song_tag_binaries, text_tag_binaries, song_binaries, text_binaries)
+
+        embedding_path = os.path.join(self.data_path, '../../embs')
+        os.makedirs(embedding_path, exist_ok=True)
+        np.save(open(os.path.join(embedding_path, 'texttag_embeddings.npy'), 'wb'), text_tag_embs)
+        np.save(open(os.path.join(embedding_path, 'texttag_binaries.npy'), 'wb'), text_tag_binaries)
+        np.save(open(os.path.join(embedding_path, 'songtag_embeddings.npy'), 'wb'), song_tag_embs)
+        np.save(open(os.path.join(embedding_path, 'songtag_binaries.npy'), 'wb'), song_tag_binaries)
+        np.save(open(os.path.join(embedding_path, 'test_embeddings.npy'), 'wb'), text_embs)
+        np.save(open(os.path.join(embedding_path, 'test_binaries.npy'), 'wb'), text_binaries)
+        np.save(open(os.path.join(embedding_path, 'song_embeddings.npy'), 'wb'), song_embs)
+        np.save(open(os.path.join(embedding_path, 'song_binaries.npy'), 'wb'), song_binaries)
 
     # evaluation metrics
     def get_scores(self, song_tag_embs, text_tag_embs, song_embs, text_embs, song_tag_binaries, text_tag_binaries, song_binaries, text_binaries):
