@@ -19,34 +19,52 @@ pip install -r requirements.txt
 
 - Read the audio files and store them into `.npy` format.
 
-- Other relevant data including Alm's dataset, ISEAR dataset, emotion embeddings, pretrained Word2Vec, and data splits are available here ([link](https://github.com)).
+- Other relevant data including Alm's dataset ([original link](http://people.rc.rit.edu/~coagla/affectdata/index.html)), ISEAR dataset ([original link](https://www.unige.ch/cisa/research/materials-and-online-research/research-material/)), emotion embeddings, pretrained Word2Vec, and data splits are all available here ([link](https://www.dropbox.com/sh/qcc30tjy256ursl/AABr0wOyzgxoASP40H1EmWN8a)).
 
 - Unzip `ttm_data.tar.gz` and locate the extracted `data` folder under `text2music-emotion-embedding/`.
 
 
 ## Training
-Check `scripts` folder to train models. 
+Here is an example for training a metric learning model.
 
-For example:
+```
+python3 src/metric_learning/main.py \
+        --dataset 'isear' \
+        --num_branches 3 \
+        --data_path YOUR_DATA_PATH_TO_AUDIOSET
+```
 
-`bash scripts/metric_learning.sh`
-
-Do not forget to modify `YOUR_AUDIO_PATH`.
+Fore more examples, check bash files under `scripts` folder. 
 
 ## Test
 Here is an example for the test.
 
-`python3 -u src/metric_learning/main.py --mode 'TEST' --dataset 'alm' --model_load_path 'data/pretrained/alm_cross.ckpt' --data_path 'YOUR_DATA_PATH'`
+```
+python3 src/metric_learning/main.py \
+        --mode 'TEST' \
+        --dataset 'alm' \
+        --model_load_path 'data/pretrained/alm_cross.ckpt' \
+        --data_path 'YOUR_DATA_PATH_TO_AUDIOSET'
+```
+Pretrained three-branch metric learning models (`alm_cross.ckpt` and `isear_cross.ckpt`) are included in `ttm_data.tar.gz`. This code is reproducible by locating the unzipped `data` folder under `text2music-emotion-embedding/`.
 
 ## Visualization
+Embedding distribution of each model can be projected onto 2-dimensional space. We used uniform manifold approximation and projection (UMAP) to visualize the distribution. UMAP is known to preserve more of global structure compared to t-SNE.
+
+- Step-by-step guide of visalization
+
+![vis](./images/all_umap.pdf)
+
+- More analysis on these visualization.
 
 
 ## Demo
-We included a pretrained 3-branch metric learning model in the aforementioned link. Following examples are retrieval results of the model.
+We introduce some retrieval results from the pretrained three-branch metric learning models.
 
-| Queried text      | Retrieved music |
-| ----------- | ----------- |
-| Hello world! <br/> This is an example text from ISEAR dataset.      | [YoutubeLink](https://youtube.com)       |
+| Queried text      | Source | Retrieved music |
+| ----------- | ----------- | ----------- |
+| Hello world! <br/> This is an example text from ALM's dataset.      | ALM | [YoutubeLink](https://youtube.com)       | 
+| Hello world! <br/> This is an example text from ISEAR dataset.      | ISEAR | [YoutubeLink](https://youtube.com)       | 
 
 
 ## License
