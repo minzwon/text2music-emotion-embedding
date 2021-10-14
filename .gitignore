@@ -1,5 +1,7 @@
 data/
 models/
+checkpoints/
+embs/
 */*/__pycache__/
 */*/*/__pycache__/
 

@@ -272,16 +272,16 @@ class Solver(LightningModule):
         else:
             overall = self.get_scores(song_tag_embs, text_tag_embs, song_embs, text_embs, song_tag_binaries, text_tag_binaries, song_binaries, text_binaries)
 
-        embedding_path = os.path.join(self.data_path, '../../embs')
+        embedding_path = os.path.join('./embs')
         os.makedirs(embedding_path, exist_ok=True)
-        np.save(open(os.path.join(embedding_path, 'texttag_embeddings.npy'), 'wb'), text_tag_embs)
-        np.save(open(os.path.join(embedding_path, 'texttag_binaries.npy'), 'wb'), text_tag_binaries)
-        np.save(open(os.path.join(embedding_path, 'songtag_embeddings.npy'), 'wb'), song_tag_embs)
-        np.save(open(os.path.join(embedding_path, 'songtag_binaries.npy'), 'wb'), song_tag_binaries)
-        np.save(open(os.path.join(embedding_path, 'test_embeddings.npy'), 'wb'), text_embs)
-        np.save(open(os.path.join(embedding_path, 'test_binaries.npy'), 'wb'), text_binaries)
-        np.save(open(os.path.join(embedding_path, 'song_embeddings.npy'), 'wb'), song_embs)
-        np.save(open(os.path.join(embedding_path, 'song_binaries.npy'), 'wb'), song_binaries)
+        np.save(open(os.path.join(embedding_path, '%s_texttag_embeddings.npy' % self.dataset), 'wb'), text_tag_embs)
+        np.save(open(os.path.join(embedding_path, '%s_texttag_binaries.npy' % self.dataset), 'wb'), text_tag_binaries)
+        np.save(open(os.path.join(embedding_path, '%s_songtag_embeddings.npy' % self.dataset), 'wb'), song_tag_embs)
+        np.save(open(os.path.join(embedding_path, '%s_songtag_binaries.npy' % self.dataset), 'wb'), song_tag_binaries)
+        np.save(open(os.path.join(embedding_path, '%s_test_embeddings.npy' % self.dataset), 'wb'), text_embs)
+        np.save(open(os.path.join(embedding_path, '%s_test_binaries.npy' % self.dataset), 'wb'), text_binaries)
+        np.save(open(os.path.join(embedding_path, '%s_song_embeddings.npy' % self.dataset), 'wb'), song_embs)
+        np.save(open(os.path.join(embedding_path, '%s_song_binaries.npy' % self.dataset), 'wb'), song_binaries)
 
     # evaluation metrics
     def get_scores(self, song_tag_embs, text_tag_embs, song_embs, text_embs, song_tag_binaries, text_tag_binaries, song_binaries, text_binaries):
