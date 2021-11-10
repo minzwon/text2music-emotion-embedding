@@ -2,9 +2,18 @@
 
 Text-to-Music Retrieval using Pre-defined/Data-driven Emotion Embeddings
 ## Reference
-Emotion Embedding Spaces for Matching Music to Stories, ISMIR 2021 [[arxiv](https://arxiv.org)]
+Emotion Embedding Spaces for Matching Music to Stories, ISMIR 2021 [[paper](https://archives.ismir.net/ismir2021/paper/000097.pdf)]
 
 -- Minz Won, Justin Salamon, Nicholas J. Bryan, Gautham J. Mysore, and Xavier Serra
+
+```
+@inproceedings{won2021emotion,
+  title={Emotion embedding spaces for matching music to stories},
+  author={Won, Minz. and Salamon, Justin. and Bryan, Nicholas J. and Mysore, Gautham J. and Serra, Xavier.},
+  booktitle={ISMIR},
+  year={2021}
+}
+```
 
 
 ## Requirements
@@ -51,20 +60,16 @@ Pretrained three-branch metric learning models (`alm_cross.ckpt` and `isear_cros
 ## Visualization
 Embedding distribution of each model can be projected onto 2-dimensional space. We used uniform manifold approximation and projection (UMAP) to visualize the distribution. UMAP is known to preserve more of global structure compared to t-SNE.
 
-- Step-by-step guide of visalization
 
-![vis](./images/all_umap.pdf)
+<p align = "center">
+<img src = "https://imgur.com/wNlXG6I.png">
+</p>
 
-- More analysis on these visualization.
 
 
 ## Demo
-We introduce some retrieval results from the pretrained three-branch metric learning models.
+Please try some examples done by the three-branch metric learning model [[Soundcloud](https://soundcloud.com/minz-won/sets/emotion-embedding-spaces-for-matching-music-to-stories-demo?si=7249b1881611425da41c63ac0d123305)].
 
-| Queried text      | Source | Retrieved music |
-| ----------- | ----------- | ----------- |
-| Hello world! <br/> This is an example text from ALM's dataset.      | ALM | [YoutubeLink](https://youtube.com)       | 
-| Hello world! <br/> This is an example text from ISEAR dataset.      | ISEAR | [YoutubeLink](https://youtube.com)       | 
 
 
 ## License
