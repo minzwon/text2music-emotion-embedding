@@ -2,7 +2,7 @@
 
 Text-to-Music Retrieval using Pre-defined/Data-driven Emotion Embeddings
 ## Reference
-Emotion Embedding Spaces for Matching Music to Stories, ISMIR 2021 [[paper](https://archives.ismir.net/ismir2021/paper/000097.pdf)]
+Emotion Embedding Spaces for Matching Music to Stories, ISMIR 2021 [[paper](https://arxiv.org/abs/2111.13468)]
 
 -- Minz Won, Justin Salamon, Nicholas J. Bryan, Gautham J. Mysore, and Xavier Serra
 
@@ -74,5 +74,27 @@ Please try some examples done by the three-branch metric learning model [[Soundc
 
 ## License
 ```
-Some License
+Text2Music Emotion Embedding
+
+MIT License
+Copyright (c) 2021 Music Technology Group, Universitat Pompeu Fabra. 
+Code developed by Minz Won.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this software and associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+copies of the Software, and to permit persons to whom the Software is 
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
 ```
