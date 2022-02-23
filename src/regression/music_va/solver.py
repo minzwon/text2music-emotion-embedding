@@ -14,9 +14,9 @@ from torch.autograd import Variable
 from torch.utils.data import DataLoader
 from pytorch_lightning.core.lightning import LightningModule
 
-from data_loader import MyDataset
-from model import MyModel
-from augmentations import get_augmentation_sequence
+from src.regression.music_va.data_loader import MyDataset
+from src.regression.music_va.model import MyModel
+from src.regression.music_va.augmentations import get_augmentation_sequence
 
 
 class Solver(LightningModule):

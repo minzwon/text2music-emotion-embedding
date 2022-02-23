@@ -4,7 +4,7 @@ import argparse
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
 
-from solver import Solver
+from src.classification.music_classification.solver import Solver
 
 def main(config):
     solver = Solver(config)

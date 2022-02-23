@@ -2,7 +2,7 @@ import torch
 from torch import nn
 from transformers import RobertaModel, RobertaForSequenceClassification
 
-from modules import Conv_2d, Conv_emb, Res_2d_mp
+from src.classification.music_classification.modules import Conv_2d, Conv_emb, Res_2d_mp
 
 
 class MyModel(nn.Module):

@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from modules import Conv_2d, Conv_emb, Res_2d_mp, Res_2d
+from src.regression.music_w2v.modules import Conv_2d, Conv_emb, Res_2d_mp, Res_2d
 
 
 class MyModel(nn.Module):

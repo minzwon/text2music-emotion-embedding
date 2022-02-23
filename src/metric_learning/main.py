@@ -1,7 +1,7 @@
 import os
 import torch
 import argparse
-from solver import Solver
+from src.metric_learning.solver import Solver
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
 

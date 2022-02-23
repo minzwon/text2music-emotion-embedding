@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from modules import Conv_2d, Conv_emb, Res_2d_mp
+from src.metric_learning.modules import Conv_2d, Conv_emb, Res_2d_mp
 from transformers import DistilBertModel
 
 

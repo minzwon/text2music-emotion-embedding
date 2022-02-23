@@ -1,7 +1,7 @@
 import os
 import torch
 import argparse
-from solver import Solver
+from src.regression.music_va.solver import Solver
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
 
