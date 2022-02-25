@@ -16,6 +16,7 @@ from pytorch_lightning.core.lightning import LightningModule
 
 from src.metric_learning.data_loader import MyDataset
 from src.metric_learning.model import MyModel
+from src.metric_learning.augmentations import get_augmentation_sequence
 
 
 class TripletLoss(nn.Module):
@@ -45,6 +46,7 @@ class Solver(LightningModule):
         self.num_branches = config.num_branches
         self.mode = config.mode
         self.dataset = config.dataset
+        self.aug, self.no_aug = get_augmentation_sequence(config)
         self.len_song_dataset = 344
         self.song_moods = ['angry', 'exciting', 'funny', 'happy', 'sad', 'scary', 'tender']
 
@@ -90,14 +92,14 @@ class Solver(LightningModule):
                     'sadness': ['tender'],
                     'shame': ['sad'],
                     'surprised': ['happy']}
-        self.approx_dict = approx_dict_w2v
+        self.approx_dict = approx_dict_vad
 
         # model
-        self.spec = torchaudio.transforms.MelSpectrogram(sample_rate=16000,
-                                 n_fft=512,
-                                 f_min=0.0,
-                                 f_max=8000.0,
-                                 n_mels=128)
+#        self.spec = torchaudio.transforms.MelSpectrogram(sample_rate=16000,
+#                                 n_fft=512,
+#                                 f_min=0.0,
+#                                 f_max=8000.0,
+#                                 n_mels=128)
         self.model = MyModel(ndim=config.ndim, edim=config.edim)
         self.loss_function = TripletLoss(config.margin)
 
@@ -155,7 +157,8 @@ class Solver(LightningModule):
         song = torch.cat([tts_song, common_song])
 
         # forward
-        spec = self.spec(song)
+#        spec = self.spec(song)
+        spec = self.aug(song)
         tag_emb, song_emb, text_emb = self.model.forward(tag, spec, token, mask)
 
         # split back
@@ -192,7 +195,8 @@ class Solver(LightningModule):
         song_tag, song_tag_binary, text_tag, text_tag_binary, song, song_binary, token, mask, text_binary = batch
         b, c, t = song.size()
         with torch.no_grad():
-            spec = self.spec(song.view(-1, t))
+#            spec = self.spec(song.view(-1, t))
+            spec = self.no_aug(song.view(-1, t))
             song_tag_emb = self.model.tag_to_embedding(song_tag)
             text_tag_emb = self.model.tag_to_embedding(text_tag)
             song_emb = self.model.spec_to_embedding(spec)

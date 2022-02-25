@@ -7,3 +7,4 @@ embs/
 */*/*/__pycache__/
 *.npy
 *.wav
+*.tar.gz
