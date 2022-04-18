@@ -26,7 +26,22 @@ pip install -r requirements.txt
 ## Data
 - You need to collect audio files of AudioSet mood subset [[link](https://research.google.com/audioset/ontology/music_mood_1.html)].
 
-- Read the audio files and store them into `.npy` format.
+- Resample the audio to 16 kHz files and store them into `.npy` format:
+```python
+# Example code for loading an audio file, resampling to 16 kHz, and saving it as an .npy file
+import librosa
+import numpy as np
+
+SR = 16000
+
+input_wavfile = "/path/to/audio/file.wav"
+output_npyfile = "/path/to/audio/file.npy"
+
+audio, sr = librosa.load(input_wavfile , sr=SR)
+assert sr==SR
+
+np.save(output_npyfile, audio)
+```
 
 - Other relevant data including Alm's dataset ([original link](http://people.rc.rit.edu/~coagla/affectdata/index.html)), ISEAR dataset ([original link](https://www.unige.ch/cisa/research/materials-and-online-research/research-material/)), emotion embeddings, pretrained Word2Vec, and data splits are all available here [[link](https://www.dropbox.com/s/noezssp2vg3ud5f/t2m_data.tar.gz)].
 - Unzip `t2m_data.tar.gz` and locate the extracted `data` folder under `text2music-emotion-embedding/`.
